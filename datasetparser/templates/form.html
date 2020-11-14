@@ -1,0 +1,11 @@
+<h1>Загрузить дата-сет в xlsx</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url  'datasetparser:index' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Отправить" />
+</form>
