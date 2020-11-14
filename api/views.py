@@ -20,7 +20,8 @@ class IncidentView(APIView):
             filter_params["area__name__in"] = request.query_params['area'].split(',')
         if request.query_params.get('categoryes'):
             filter_params["categoryes__name__in"] = request.query_params['categoryes'].split(',')
+        limit = request.query_params.get('limit', default=None)
 
-        incidents = Incident.objects.filter(**filter_params)
+        incidents = Incident.objects.filter(**filter_params)[:limit]
         serializer = IncidentSerializer(incidents, many=True)
         return Response(serializer.data)
