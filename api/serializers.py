@@ -10,3 +10,9 @@ class IncidentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Incident
         exclude = []
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        exclude = []

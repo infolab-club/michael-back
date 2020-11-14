@@ -27,3 +27,10 @@ class IncidentView(APIView):
         incidents = Incident.objects.filter(**filter_params)[:limit]
         serializer = IncidentSerializer(incidents, many=True)
         return Response(serializer.data)
+
+
+class CategoryView(APIView):
+    def get(self, request):
+        categoryes = Category.objects.all()
+        serializer = CategorySerializer(categoryes, many=True)
+        return Response(serializer.data)
