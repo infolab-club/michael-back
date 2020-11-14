@@ -9,4 +9,4 @@ class IncidentSerializer(serializers.ModelSerializer):
     datetime = serializers.DateTimeField(format=DATETIME_FORMAT)
     class Meta:
         model = Incident
-        exclude = ["id"]
+        exclude = []

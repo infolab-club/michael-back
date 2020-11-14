@@ -5,5 +5,5 @@ from . import views
 
 app_name = 'api'
 urlpatterns = [
-    path('', views.IncidentView.as_view()),
+    path('get/', views.IncidentView.as_view()),
 ]
