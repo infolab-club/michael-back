@@ -10,7 +10,7 @@ DATETIME_FORMAT = "%d.%m.%Y %H:%M"
 
 class IncidentView(APIView):
     def get(self, request):
-        
+        limit = 100
         filter_params = {}
         if request.query_params.get('datetime_lte'):
             filter_params["datetime__lte"] = datetime.strptime(request.query_params['datetime_lte'], DATETIME_FORMAT)
@@ -20,7 +20,9 @@ class IncidentView(APIView):
             filter_params["area__name__in"] = request.query_params['area'].split(',')
         if request.query_params.get('categoryes'):
             filter_params["categoryes__name__in"] = request.query_params['categoryes'].split(',')
-        limit = request.query_params.get('limit', default=None)
+        if request.query_params.get('limit'):
+            limit = int(request.query_params['limit'])
+        
 
         incidents = Incident.objects.filter(**filter_params)[:limit]
         serializer = IncidentSerializer(incidents, many=True)
