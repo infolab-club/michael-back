@@ -27,6 +27,6 @@ def parseDatasetToBd(dataset, datetime_format):
     dataset['Идентификатор Еас адреса'] = dataset['Идентификатор Еас адреса'].apply(lambda x: x if x is not np.nan else 0)
     dataset['Идентификатор Еас здания'] = dataset['Идентификатор Еас здания'].apply(lambda x: x if x is not np.nan else 0)
     for index, row in dataset.iloc[1:].iterrows():
-        Incident.objects.create(category=Category.objects.get(id=row['Категория']), area=Area.objects.get(id=row['Район']), latitude=row['Широта'],
+        Message.objects.create(category=Category.objects.get(id=row['Категория']), area=Area.objects.get(id=row['Район']), latitude=row['Широта'],
             longitude=row['Долгота'], eas_address=row['Идентификатор Еас адреса'],
             eas_building=row['Идентификатор Еас здания'], datetime=row['Время регистрации'])
