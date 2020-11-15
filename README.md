@@ -41,7 +41,7 @@ GET /api/get/?params
 ]
 ```
 
-:---
+| :--- |
 
 ```http
 POST /api/regmess/
@@ -64,7 +64,7 @@ POST /api/regmess/
 }
 ```
 
-:---
+| :--- |
 
 ```http
 GET /api/get/?params
@@ -102,7 +102,7 @@ GET /api/get/?params
 ]
 ```
 
-:---
+| :--- |
 
 
 ```http
@@ -133,7 +133,7 @@ GET /api/get/cats/
 ]
 ```
 
-:---
+| :--- |
 
 ```http
 GET /api/get/areas/
