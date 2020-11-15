@@ -41,6 +41,31 @@ GET /api/get/?params
 ]
 ```
 
+:---
+
+```http
+POST /api/regmess/
+```
+
+Принимает json, добавляет сообщение о проишествие в базу данных.
+Формирует на основе его аварию, если в определенном радиусе не было проишествий за время специфичное для типа аварии, или добавляет к существующей.
+
+### Запрос
+
+```javascript
+{
+"datetime": "%d.%m.%Y %H:%M", // Время сообщения
+"category": 1, // Тип проишествия
+"eas_address": int, // Идентификатор Еас адреса
+"eas_building": int, // Идентификатор Еас здания
+"latitude": float, // Широта
+"longitude": float, // Долгота
+"area": int // Район
+}
+```
+
+:---
+
 ```http
 GET /api/get/?params
 ```
@@ -77,39 +102,8 @@ GET /api/get/?params
 ]
 ```
 
-Возвращает сообщения о проишествия фильтруя по params.
+:---
 
-| Paramets | Type | Description |
-| :--- | :--- | :--- |
-| `limit` | `int` or `None` | Ограничивает размер ответа. Default=100 |
-| `datetime_lte` | `string` | Фильтр раньше чем ДатаВремя в формате `%d.%m.%Y %H:%M` Default=None |
-| `datetime_gte` | `string` | Фильтр позже чем ДатаВремя в формате `%d.%m.%Y %H:%M` Default=None |
-| `areas` | `string1,string2...` or `int1,int2...` | Фильтр по районам по названию, либо по id Default=all |
-| `cats` | `string1,string2...` or `int1,int2...` | Фильтр по типу проишествия по названию, либо по id Default=all|
-
-### Ответ
-```javascript
-[
-    {
-        "id": 1,
-        "category": {
-            "id": 1,
-            "name": "Слабый напор или отсутствие горячего водоснабжения"
-        },
-        "area": {
-            "id": 5,
-            "name": "Колпинский"
-        },
-        "datetime": "15.11.2020 04:45",
-        "eas_address": 279466,
-        "eas_building": 124061,
-        "latitude": 59.918522,
-        "longitude": 30.307146,
-        "accident": 1
-    }
-]
-```
-```
 
 ```http
 GET /api/get/cats/
@@ -138,6 +132,8 @@ GET /api/get/cats/
     }
 ]
 ```
+
+:---
 
 ```http
 GET /api/get/areas/
